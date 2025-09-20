@@ -1,4 +1,4 @@
-# CHIP-8 命令セット完全リファレンス
+# CHIP-8 命令セットリファレンス
 
 ## 目次
 
@@ -2110,11 +2110,11 @@ P(masked_value = k) = {
                 (< (- (get-universal-time) timestamp) 0.1))))))
 ```
 
-### 高性能実行ループ
+### 実行ループ
 
 ```lisp
 (defmethod run-emulator ((emulator emulator) &key (duration nil) (max-cycles nil))
-  "エミュレーター実行（高性能版）"
+  "エミュレーター実行"
   (let* ((cpu (emulator-cpu emulator))
          (target-frequency (emulator-clock-speed emulator))
          (cycle-time (/ 1.0 target-frequency))
@@ -2160,7 +2160,7 @@ P(masked_value = k) = {
       (stop-beep))))
 ```
 
-### 包括的テストスイート
+### テストスイート
 
 ```lisp
 (defpackage :chip8-test
@@ -2170,7 +2170,7 @@ P(masked_value = k) = {
 (in-package :chip8-test)
 
 (def-suite chip8-instruction-tests
-  :description "CHIP-8命令セットの包括的テスト")
+  :description "CHIP-8命令セットのテスト")
 
 (test test-arithmetic-instructions
   "算術演算命令のテスト"
@@ -2219,6 +2219,6 @@ P(masked_value = k) = {
 
 ---
 
-このCHIP-8命令セット完全リファレンスは、35個すべての命令について詳細な仕様、実装例、エッジケース、互換性情報を提供しています。Common Lispの実装例とともに、数学的な厳密性と実用性を両立した、世界最高レベルの包括的なリファレンスとなっています。
+このCHIP-8命令セットリファレンスは、35個すべての命令について詳細な仕様、実装例、エッジケース、互換性情報を提供しています。Common Lispの実装例とともに、数学的な厳密性と実用性を両立したリファレンスとなっています。
 
 各命令の動作は数学的公式で定義され、真理値表や計算例により明確化されています。また、実装間の差異や互換性問題についても詳細に記述し、実用的なエミュレーター開発に必要なすべての情報を網羅しています。

@@ -2,7 +2,7 @@
 
 ## 概要
 
-このガイドでは、Common LispにS式Prolog機能を統合し、CHIP-8エミュレーターの動作を数学的に検証する包括的手法を解説します。Logic Programming、Constraint Programming、Automated Theorem Provingを統合したハイブリッドアプローチにより、高い信頼性を実現します。
+このガイドでは、Common LispにS式Prolog機能を統合し、CHIP-8エミュレーターの動作を数学的に検証する手法を解説します。Logic Programming、Constraint Programming、Automated Theorem Provingを統合したハイブリッドアプローチにより、高い信頼性を実現します。
 
 > **前提知識**: [CPU実装チュートリアル](../tutorials/02-cpu-implementation.md)のS式Prolog基礎および[Property-Based Testing](03-property-testing.md)の理解が必要です。
 
@@ -645,7 +645,7 @@ Qed."
 `★ Insight ─────────────────────────────────────`
 このS式Prolog統合ガイドでは、論理プログラミング、制約プログラミング、自動定理証明を統合したアプローチを実現しています。特に注目すべきは：
 
-1. **Robinson統合化アルゴリズム**: occurs-checkを含む完全な実装により、循環参照を防ぎながら効率的な変数統一を実現
+1. **Robinson統合化アルゴリズム**: occurs-checkを含む実装により、循環参照を防ぎながら変数統一を実現
 2. **多段階アーキテクチャ**: 基本述語→制約解決→定理証明→実行時検証の4段階で段階的に検証強度を向上
 3. **実践的形式手法**: CoqやLean4との相互運用により、実用的なソフトウェアに形式手法を適用可能
 `─────────────────────────────────────────────────`
@@ -655,9 +655,9 @@ Qed."
 ### 検証実行例
 
 ```lisp
-;; CHIP-8命令の完全検証
+;; CHIP-8命令の検証
 (defun verify-chip8-instruction (opcode initial-state)
-  "命令実行の完全検証"
+  "命令実行の検証"
   (let ((result-state (execute-instruction-safely opcode initial-state)))
     (prove-all
       ;; 基本安全性
@@ -669,7 +669,7 @@ Qed."
       ;; タイミング制約
       `(timing-constraint ,opcode ,result-state))))
 
-;; 包括的システム検証
+;; システム検証
 (defun verify-emulator-correctness ()
   "エミュレーター全体の正当性検証"
   (with-runtime-verification
@@ -697,8 +697,8 @@ Qed."
 | 定理証明 | 30% | 99% | +50MB |
 | 実行時検証 | 2% | 90% | +5MB |
 
-この統合システムにより、CHIP-8エミュレーターは理論的完全性と実用的性能を両立した実装を実現できます。
+この統合システムにより、CHIP-8エミュレーターは理論的検証と実用的性能を両立した実装を実現できます。
 
 ---
 
-> **次のステップ**: [APIリファレンス](../reference/02-api-reference.md)で完全なAPI仕様を確認し、[技術仕様書](../reference/03-technical-specification.md)で包括的な技術詳細を参照してください。
+> **次のステップ**: [APIリファレンス](../reference/02-api-reference.md)でAPI仕様を確認し、[技術仕様書](../reference/03-technical-specification.md)で技術詳細を参照してください。

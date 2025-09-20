@@ -1,8 +1,8 @@
-# CLOSアーキテクチャ完全解説
+# CLOSアーキテクチャ十分解説
 
 ## 概要
 
-Common Lisp Object System（CLOS）は、世界で最も先進的で柔軟性に富んだオブジェクトシステムの一つです。本ドキュメントでは、CHIP-8エミュレーターを通じてCLOSの包括的な機能を解説し、究極のオブジェクト指向設計を実現する方法を詳述します。
+Common Lisp Object System（CLOS）は、世界で最も先進的で柔軟性に富んだオブジェクトシステムの一つです。本ドキュメントでは、CHIP-8エミュレーターを通じてCLOSの詳細な機能を解説し、高度なオブジェクト指向設計を実現する方法を詳述します。
 
 ## 1. 多重継承とMixin設計パターン
 
@@ -515,7 +515,7 @@ CLOSの標準メソッドコンビネーション（:before, :after, :around）�
       (execute-modification-hooks class instance slot-def old-value new-value))
     (call-next-method)))
 
-;; 究極CPUクラス - 複数メタクラス機能の活用
+;; 高度CPUクラス - 複数メタクラス機能の活用
 (defclass ultimate-cpu (advanced-cpu)
   ((execution-history :initform (make-array 1000 :fill-pointer 0 :adjustable t)
                      :accessor cpu-execution-history
@@ -529,7 +529,7 @@ CLOSの標準メソッドコンビネーション（:before, :after, :around）�
 
   (:metaclass auto-optimizing-class)
   (:optimization-level :maximum)
-  (:documentation "究極の最適化CPU"))
+  (:documentation "高度な最適化CPU"))
 ```
 
 ### 3.2 動的クラス変更
@@ -540,7 +540,7 @@ CLOSの標準メソッドコンビネーション（:before, :after, :around）�
   (:documentation "CPU機能のアップグレード"))
 
 (defmethod upgrade-cpu-capability ((cpu advanced-cpu) (capability (eql :ultimate)))
-  "究極CPUへのアップグレード"
+  "高度CPUへのアップグレード"
   (change-class cpu 'ultimate-cpu)
   (notify-observers cpu :capability-upgraded `(:to :ultimate)))
 
@@ -553,7 +553,7 @@ CLOSの標準メソッドコンビネーション（:before, :after, :around）�
 (defmethod update-instance-for-different-class :after ((previous advanced-cpu)
                                                       (current ultimate-cpu)
                                                       &key)
-  "究極CPUへの変更後処理"
+  "高度CPUへの変更後処理"
   (format t "CPU upgraded to ultimate performance mode~%")
   (apply-ultimate-optimizations current)
   (initialize-advanced-features current))
@@ -718,7 +718,7 @@ CLOSの標準メソッドコンビネーション（:before, :after, :around）�
 ### 5.1 高度なスロット定義
 
 ```lisp
-;; 究極のスロット定義例
+;; 高度なスロット定義例
 (defclass ultimate-emulator-state ()
   ;; インスタンス割り当て（デフォルト）
   ((cpu-registers :initform (make-array 16 :element-type '(unsigned-byte 8))
@@ -759,7 +759,7 @@ CLOSの標準メソッドコンビネーション（:before, :after, :around）�
 
   (:default-initargs
    :name "Ultimate Emulator")
-  (:documentation "究極のエミュレーター状態クラス"))
+  (:documentation "高度なエミュレーター状態クラス"))
 
 ;; 遅延初期化の実装
 (defun delay-initialize-large-buffer ()
@@ -1409,5 +1409,5 @@ CLOSは、その豊富な機能により、従来のオブジェクト指向言�
 CLOSのこれらの機能は、単なる技術的な優位性を超えて、ソフトウェア設計における新たな可能性を切り開きます。静的な構造に縛られることなく、実行時の要求に応じて動的に進化するシステムの構築が可能になり、これにより真の意味での「インテリジェント」なソフトウェアが実現されるのです。
 
 `★ Insight ─────────────────────────────────────`
-CLOSは、オブジェクト指向設計の究極形態を提供します。他の言語では複雑な設計パターンや大量のボイラープレートコードが必要な機能も、CLOSでは言語機能として直接サポートされています。これにより、開発者は本質的な問題解決に集中でき、保守性と拡張性を兼ね備えた高品質なソフトウェアを効率的に開発できます。特に、メタクラスプロトコルによる言語自体の拡張能力は、ドメイン特化言語の構築を可能にし、問題領域に最適化されたプログラミング環境を実現します。
+CLOSは、オブジェクト指向設計の高度形態を提供します。他の言語では複雑な設計パターンや大量のボイラープレートコードが必要な機能も、CLOSでは言語機能として直接サポートされています。これにより、開発者は本質的な問題解決に集中でき、保守性と拡張性を兼ね備えた高品質なソフトウェアを効率的に開発できます。特に、メタクラスプロトコルによる言語自体の拡張能力は、ドメイン特化言語の構築を可能にし、問題領域に最適化されたプログラミング環境を実現します。
 `─────────────────────────────────────────────────`

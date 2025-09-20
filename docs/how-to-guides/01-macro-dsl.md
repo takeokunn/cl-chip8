@@ -2,7 +2,7 @@
 
 ## 概要
 
-このガイドでは、Common Lispのマクロシステムを活用してCHIP-8命令セットを効率的に実装するためのDSL（Domain Specific Language）構築手法を解説します。基本マクロから段階的に発展させ、保守性・可読性・性能を両立した実装を実現します。
+このガイドでは、Common Lispのマクロシステムを活用してCHIP-8命令セットを実装するためのDSL（Domain Specific Language）構築手法を解説します。基本マクロから段階的に発展させ、保守性・可読性・性能を向上させた実装を目指します。
 
 > **関連ガイド**: メタプログラミング技術については [04-metaprogramming.md](04-metaprogramming.md) を参照してください。
 
@@ -363,9 +363,9 @@
               (the (unsigned-byte 8) (logand result 255)))))))
 ```
 
-### 機能の紹介
+### 追加機能
 
-本ガイドで紹介した3段階のDSLを超えた機能として、以下があります：
+本ガイドで紹介した3段階のDSLに加えて、以下の機能があります：
 
 #### 型安全性とコンパイル時最適化
 
@@ -392,7 +392,7 @@
 
 #### メタDSLシステム
 
-完全なメタプログラミングシステムの構築については、[04-metaprogramming.md](04-metaprogramming.md)で詳細に解説されています。
+メタプログラミングシステムの構築については、[04-metaprogramming.md](04-metaprogramming.md)で解説されています。
 
 ```lisp
 ;; DSL自体を生成するメタDSLの例

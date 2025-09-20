@@ -1,8 +1,8 @@
-# CL-CHIP8 完全APIリファレンス
+# CL-CHIP8 APIリファレンス
 
 ## 概要
 
-CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュレーターです。本APIリファレンスでは、すべての公開クラス、ジェネリック関数、マクロ、型定義、例外処理、および使用例を詳細に解説します。
+CL-CHIP8は、Common Lispで構築されたCHIP-8エミュレーターです。本APIリファレンスでは、公開クラス、ジェネリック関数、マクロ、型定義、例外処理、および使用例を解説します。
 
 ## パッケージ構成
 
@@ -14,8 +14,8 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
   (:nicknames #:chip8)
   (:export
    ;; メインクラス
-   #:chip8-emulator #:ultimate-cpu #:advanced-memory-manager
-   #:vectorized-display-system #:advanced-input-handler #:advanced-audio-system
+   #:chip8-emulator #:cpu #:memory-manager
+   #:display-system #:input-handler #:audio-system
 
    ;; ファクトリ関数
    #:make-emulator #:make-cpu #:make-memory-manager #:make-display-system
@@ -46,7 +46,7 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
   (:export
    ;; 命令定義マクロ
    #:defchip8-instruction #:definstruction #:defalu-family
-   #:defoptimized-instruction #:defvectorized-instruction
+   #:defoptimized-instruction #:defparallel-instruction
 
    ;; コンテキストマクロ
    #:with-cpu-context #:with-operands #:with-performance-optimization
@@ -139,27 +139,27 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
 ;; コアコンポーネント
 (cpu :initarg :cpu
      :accessor emulator-cpu
-     :type ultimate-cpu
+     :type cpu
      :documentation "CPUサブシステム")
 
 (memory :initarg :memory
         :accessor emulator-memory
-        :type advanced-memory-manager
+        :type memory-manager
         :documentation "メモリ管理サブシステム")
 
 (display :initarg :display
          :accessor emulator-display
-         :type vectorized-display-system
+         :type display-system
          :documentation "表示サブシステム")
 
 (input :initarg :input
        :accessor emulator-input
-       :type advanced-input-handler
+       :type input-handler
        :documentation "入力処理サブシステム")
 
 (audio :initarg :audio
        :accessor emulator-audio
-       :type advanced-audio-system
+       :type audio-system
        :documentation "音声サブシステム")
 
 ;; 実行制御
@@ -186,12 +186,12 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
 
 (debugger :initform nil
           :accessor emulator-debugger
-          :type (or null advanced-debugger)
+          :type (or null debugger)
           :documentation "デバッガーインスタンス")
 
 (profiler :initform nil
           :accessor emulator-profiler
-          :type (or null comprehensive-profiler)
+          :type (or null profiler)
           :documentation "プロファイラーインスタンス")
 
 ;; 互換性設定
@@ -236,11 +236,11 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
                  :compatibility-mode :super-chip))
 
 ;; 詳細設定付き作成
-(defparameter *advanced-emulator*
+(defparameter *configured-emulator*
   (make-instance 'chip8-emulator
-                 :cpu (make-instance 'ultimate-cpu
-                                   :optimization-level :aggressive)
-                 :display (make-instance 'vectorized-display-system
+                 :cpu (make-instance 'cpu
+                                   :optimization-level :normal)
+                 :display (make-instance 'display-system
                                        :scale-factor 15
                                        :enable-filtering t)
                  :execution-mode :profile))
@@ -254,7 +254,7 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
 
 **メタクラス:** `OPTIMIZED-CLASS`
 
-最適化機能を持つCPUエミュレーションクラス。
+CPUエミュレーションクラス。
 
 **スロット:**
 
@@ -2328,12 +2328,12 @@ CL-CHIP8は、Common Lispの機能を活用して構築されたCHIP-8エミュ�
 
 ---
 
-このAPIリファレンスは、CL-CHIP8の全機能を網羅した完全なドキュメントです。Common Lispの機能を活用し、CHIP-8エミュレーター開発を支援します。各APIは詳細な型情報、使用例、エラーハンドリング、パフォーマンス特性を含んでおり、開発者が効率的で高品質なアプリケーションを構築できるよう設計されています。
+このAPIリファレンスは、CL-CHIP8の機能を記載したドキュメントです。Common Lispの機能を活用し、CHIP-8エミュレーター開発を支援します。各APIは型情報、使用例、エラーハンドリング、パフォーマンス特性を含んでおり、開発者がアプリケーションを構築できるよう設計されています。
 
 `★ 開発のポイント ─────────────────────────────────`
 - **段階的学習**: 基本APIから機能まで段階的に習得可能
 - **型安全性**: 厳密な型システムによる実行時エラーの予防
 - **拡張性**: プラガブルアーキテクチャによる機能拡張
-- **パフォーマンス**: プロファイル駆動最適化による高性能実現
-- **デバッグ支援**: 包括的なデバッグ・トレース機能
+- **パフォーマンス**: プロファイル駆動による性能向上
+- **デバッグ支援**: デバッグ・トレース機能
 `─────────────────────────────────────────────────`

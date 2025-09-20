@@ -2,7 +2,7 @@
 
 ## 概要
 
-本ドキュメントでは、CHIP-8エミュレーターの開発において、テスト駆動開発（TDD）とProperty-Based Testing（PBT）を組み合わせた世界最高峰のテスト哲学と実践方法を包括的に解説します。Common Lispの強力な機能を活用し、数学的厳密性と実践的有効性を両立する究極のテスト戦略を構築します。
+本ドキュメントでは、CHIP-8エミュレーターの開発において、テスト駆動開発（TDD）とProperty-Based Testing（PBT）を組み合わせた高度のテスト哲学と実践方法を詳細に解説します。Common Lispの強力な機能を活用し、数学的厳密性と実践的有効性を両立する高度なテスト戦略を構築します。
 
 ## テスト哲学の基本原理
 
@@ -178,7 +178,7 @@ Property-Based Testingは、数学的性質を基盤とする検証手法です�
 
 ;; 複合ジェネレーター
 (defun gen-cpu-state ()
-  "完全なCPU状態を生成"
+  "十分なCPU状態を生成"
   (check-it:generator
     (lambda ()
       (list :registers (loop repeat 16
@@ -811,9 +811,9 @@ Property-Based Testingは、数学的性質を基盤とする検証手法です�
 
 (in-package #:chip8-continuous-verification)
 
-;; 包括的検証パイプライン
+;; 詳細検証パイプライン
 (defun run-verification-pipeline (&key (quick-mode nil))
-  "完全な検証パイプラインを実行"
+  "十分な検証パイプラインを実行"
   (let ((results '())
         (start-time (get-universal-time)))
 
@@ -962,12 +962,12 @@ Property-Based Testingは、数学的性質を基盤とする検証手法です�
 
 ## まとめ
 
-このドキュメントでは、CHIP-8エミュレーター開発における究極のテスト哲学を包括的に解説しました。
+このドキュメントでは、CHIP-8エミュレーター開発における高度なテスト哲学を詳細に解説しました。
 
 ### 実装したテスト戦略
 
 1. **TDD統合フレームワーク**: Red-Green-Refactor-Propertyサイクル
-2. **Property-Based Testing**: 数学的性質による包括的検証
+2. **Property-Based Testing**: 数学的性質による詳細検証
 3. **メタモルフィックテスティング**: 関係性に基づく検証
 4. **設計契約**: 事前・事後条件、不変性質の明示的検証
 5. **回帰テスト**: ゴールデンリファレンスによる品質維持

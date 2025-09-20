@@ -1,4 +1,4 @@
-# CHIP-8完全解説：決定版技術資料
+# CHIP-8解説：技術資料
 
 ## 目次
 
@@ -16,7 +16,7 @@
 
 ### COSMAC VIP時代の誕生
 
-CHIP-8は1977年、RCA COSMAC VIP（Video Interface Processor）マイクロコンピューター向けに開発された革新的なインタープリターシステムです。この時代背景を理解することで、CHIP-8の設計思想が明確になります。
+CHIP-8は1977年、RCA COSMAC VIP（Video Interface Processor）マイクロコンピューター向けに開発されたインタープリターシステムです。この時代背景を理解することで、CHIP-8の設計思想が理解できます。
 
 ```mermaid
 timeline
@@ -38,7 +38,7 @@ timeline
 
 ### COSMAC VIPの技術的背景
 
-COSMAC VIPは極めて革新的なシステムでした：
+COSMAC VIPは次のような特徴を持つシステムでした：
 
 - **CDP1802プロセッサー**: 8ビットCMOSプロセッサー
 - **総メモリ**: 2KB RAM（後に4KBに拡張）
@@ -70,7 +70,7 @@ graph TB
 
 ### Joseph Weisbeckerの設計思想
 
-CHIP-8の設計者Joseph Weisbeckerは、以下の革新的な概念を導入しました：
+CHIP-8の設計者Joseph Weisbeckerは、以下の概念を導入しました：
 
 1. **インタープリター方式**: 機械語ではなく、より高レベルな仮想命令
 2. **固定サイズ命令**: 全命令が16ビット（2バイト）で統一
@@ -733,4 +733,4 @@ graph TB
   write(memory_address, value) ⟹ read(memory_address) = value
 ```
 
-この包括的な解説により、CHIP-8の全容を理解し、高品質なエミュレーターを実装するための完全な技術基盤が提供されます。Common Lispの強力な抽象化能力と組み合わせることで、世界最高峰のCHIP-8エミュレーターの実現が可能になります。
+この解説により、CHIP-8の概要を理解し、エミュレーターを実装するための技術基盤が提供されます。Common Lispの抽象化能力と組み合わせることで、CHIP-8エミュレーターの実装が可能になります。
