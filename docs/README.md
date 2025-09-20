@@ -1,115 +1,224 @@
-# CL-CHIP8 ドキュメント
+# CL-CHIP8 Documentation Hub
 
-世界最高峰のCHIP-8エミュレーターをCommon Lispで構築するためのドキュメントです。
+世界最高峰のCHIP-8エミュレーターをCommon Lispで実装する包括的ドキュメント。
 
-## ドキュメント構造（Diátaxis）
+## 📑 目次
 
-このドキュメントは[Diátaxis](https://diataxis.fr/)フレームワークに基づいて構成されており、あなたの学習段階や目的に応じて最適な情報を提供します。
+- [🎯 ビジョン](#🎯-ビジョン)
+- [📚 Diátaxis構成](#📚-diátaxis構成)
+- [🚀 学習パス](#🚀-学習パス)
+  - [🎓 基礎コース](#🎓-基礎コース---chip-8エミュレーター入門)
+  - [🔥 応用コース](#🔥-応用コース---common-lisp高度技法)
+  - [🔬 研究コース](#🔬-研究コース---世界最高峰への挑戦)
+- [📖 セクション詳細](#📖-セクション詳細)
+- [🚀 クイックスタート](#🚀-クイックスタート)
+- [🎯 プロジェクト目標](#🎯-プロジェクト目標)
+- [📐 技術スタック](#📐-技術スタック)
+- [🏗️ プロジェクト構造](#🏗️-プロジェクト構造)
+
+## 🎯 ビジョン
+
+Common Lispの強力な機能を最大限に活用し、以下を実現します：
+
+- **圧倒的パフォーマンス**: 50,000,000+ instructions/second
+- **完全な抽象化**: 6段階のマクロDSLによる究極の可読性
+- **包括的品質保証**: TDD + Property-Based Testing + S式Prolog
+- **動的最適化**: 実行時プロファイルに基づく自己改善
+- **最小依存**: 外部パッケージを極限まで削減
+
+## 📚 Diátaxis構成
+
+本ドキュメントは[Diátaxis](https://diataxis.fr/)フレームワークに基づいて構成されています。
 
 ```mermaid
-graph TD
-    A[ドキュメント] --> B[Tutorials<br/>学習指向]
-    A --> C[How-to Guides<br/>問題解決指向]
-    A --> D[Reference<br/>情報指向]
-    A --> E[Explanation<br/>理解指向]
+graph TB
+    subgraph "実践的学習"
+        T[Tutorials<br/>段階的学習パス]
+        H[How-to Guides<br/>具体的問題解決]
+    end
 
-    B --> B1[段階的な学習]
-    B --> B2[実践的な体験]
+    subgraph "理論的理解"
+        E[Explanation<br/>概念と設計思想]
+        R[Reference<br/>仕様と詳細情報]
+    end
 
-    C --> C1[特定の問題解決]
-    C --> C2[実用的なガイド]
+    T -->|初学者| Core[Core Implementation]
+    H -->|実践者| Core
+    E -->|設計者| Core
+    R -->|参照者| Core
 
-    D --> D1[正確な情報]
-    D --> D2[技術仕様]
+    Core --> Ultimate[世界最高峰の<br/>CHIP-8エミュレーター]
 
-    E --> E1[背景知識]
-    E --> E2[設計思想]
-
-    style B fill:#e1f5fe
-    style C fill:#f3e5f5
-    style D fill:#e8f5e8
-    style E fill:#fff3e0
+    T -.->|理解を深める| E
+    H -.->|詳細を確認| R
+    E -.->|実践する| H
+    R -.->|学習する| T
 ```
 
-## 📚 学習パス
+## 🚀 学習パス
 
-### 初心者向け
-1. **[Explanation: CHIP-8概要](explanation/01-chip8-overview.md)** - CHIP-8とエミュレーターの基本概念
-2. **[Tutorial: はじめに](tutorials/01-getting-started.md)** - プロジェクトセットアップと基本実装
-3. **[Tutorial: メモリシステム](tutorials/02-memory-system.md)** - メモリ管理の構築
+### 🎓 基礎コース - CHIP-8エミュレーター入門
+```mermaid
+graph LR
+    A[環境構築] --> B[CHIP-8概念]
+    B --> C[基本CPU実装]
+    C --> D[メモリシステム]
+    D --> E[表示システム]
+    E --> F[入力処理]
+    F --> G[動作検証]
+```
 
-### 中級者向け
-1. **[Explanation: アーキテクチャ設計](explanation/02-architecture-design.md)** - システム設計の理解
-2. **[How-to: マクロシステム](how-to-guides/01-macro-system.md)** - 命令実装の効率化
-3. **[Reference: 命令セット](reference/01-instruction-set.md)** - 完全な命令仕様
+1. **[CHIP-8概要](explanation/01-chip8-overview.md)** - エミュレーターの基礎理論
+2. **[環境構築](tutorials/01-getting-started.md)** - 開発環境セットアップ
+3. **[CPU実装](tutorials/02-cpu-implementation.md)** - コアエンジン構築
+4. **[メモリシステム](tutorials/03-memory-system.md)** - メモリ管理実装
 
-### 上級者向け
-1. **[How-to: パフォーマンス最適化](how-to-guides/02-performance-optimization.md)** - 最高性能の実現
-2. **[Explanation: テスト戦略](explanation/03-testing-strategy.md)** - 品質保証の理解
-3. **[Reference: API仕様](reference/02-api-reference.md)** - 完全なAPI仕様
+### 🔥 応用コース - Common Lisp高度技法
+```mermaid
+graph LR
+    A[マクロDSL] --> B[CLOS設計]
+    B --> C[メタプログラミング]
+    C --> D[動的最適化]
+    D --> E[S式Prolog]
+    E --> F[自己改善システム]
+```
 
-## 📖 セクション別ガイド
+1. **[マクロDSL構築](how-to-guides/01-macro-dsl.md)** - 6段階抽象化
+2. **[CLOS活用](explanation/03-clos-architecture.md)** - 高度なオブジェクト指向
+3. **[最適化技法](how-to-guides/02-performance-optimization.md)** - パフォーマンスチューニング
+4. **[テスト哲学](explanation/04-testing-philosophy.md)** - TDD + PBT統合戦略
 
-### 🎯 Tutorials（チュートリアル）
-**「学習したい時に」**
+### 🔬 研究コース - 世界最高峰への挑戦
+```mermaid
+graph LR
+    A[型システム] --> B[形式検証]
+    B --> C[PBT戦略]
+    C --> D[プロファイル駆動]
+    D --> E[実行時学習]
+    E --> F[完全自律システム]
+```
 
-段階的にCHIP-8エミュレーターを構築する実践的なガイドです。
+1. **[Property-Based Testing](how-to-guides/03-property-testing.md)** - 数学的検証
+2. **[S式Prolog統合](how-to-guides/05-s-expression-prolog.md)** - 形式検証と論理プログラミング
+3. **[メタプログラミング](how-to-guides/04-metaprogramming.md)** - 動的コード生成技法
+4. **[技術仕様書](reference/03-technical-specification.md)** - 完全な仕様
 
-- **[はじめに](tutorials/01-getting-started.md)**
-  プロジェクトセットアップから基本的なCPU実装まで
+## 📖 セクション詳細
 
-- **[メモリシステム構築](tutorials/02-memory-system.md)**
-  効率的で安全なメモリ管理システムの実装
+### 🎯 [Tutorials](./tutorials/) - 実践的学習
+**目的**: 段階的に完全なエミュレーターを構築
+**対象**: CHIP-8エミュレーターを初めて実装する方
 
-完全な初心者でも理解できるよう、段階的に進められます。
+#### コンテンツ構成
+1. **[環境構築と基本設定](tutorials/01-getting-started.md)**
+   - Common Lisp環境のセットアップ
+   - プロジェクト構造の理解
+   - 最初のコード実行
 
----
+2. **[CPU実装](tutorials/02-cpu-implementation.md)**
+   - レジスタとプログラムカウンタ
+   - フェッチ・デコード・実行サイクル
+   - 基本命令の実装
 
-### 🔧 How-to Guides（実践ガイド）
-**「問題を解決したい時に」**
+3. **[メモリシステム](tutorials/03-memory-system.md)**
+   - 4KBアドレス空間の設計
+   - メモリ保護とアクセス制御
+   - スタック管理
 
-特定の実装課題を解決するための実践的なガイドです。
+4. **[表示システム](tutorials/04-display-system.md)**
+   - 64x32モノクロディスプレイ
+   - スプライト描画アルゴリズム
+   - 衝突検出
 
-- **[マクロシステムの活用](how-to-guides/01-macro-system.md)**
-  Common Lispのマクロを駆使した効率的な命令実装
+5. **[入力とタイマー](tutorials/05-input-and-timers.md)**
+   - 16キー入力システム
+   - ディレイタイマーとサウンドタイマー
+   - イベント処理
 
-- **[パフォーマンス最適化](how-to-guides/02-performance-optimization.md)**
-  SBCLの最適化機能を活用した高速化手法
+### 🔧 [How-to Guides](./how-to-guides/) - 問題解決
+**目的**: 特定の実装課題を効率的に解決
+**対象**: 具体的な問題を抱える開発者
 
-実際の開発で直面する課題の解決方法を提供します。
+#### コンテンツ構成
+1. **[マクロDSL構築](how-to-guides/01-macro-dsl.md)**
+   - 6段階の抽象化レベル
+   - 命令パターンの抽出
+   - DSLによる可読性向上
 
----
+2. **[パフォーマンス最適化](how-to-guides/02-performance-optimization.md)**
+   - SBCL固有の最適化
+   - 型宣言とインライン化
+   - プロファイル駆動開発
 
-### 📋 Reference（リファレンス）
-**「正確な情報が必要な時に」**
+3. **[Property-Based Testing](how-to-guides/03-property-testing.md)**
+   - 不変条件の定義
+   - ジェネレータの作成
+   - 自動テスト生成
 
-技術仕様と正確な情報を提供する参考資料です。
+4. **[メタプログラミング](how-to-guides/04-metaprogramming.md)**
+   - コンパイル時コード生成
+   - マクロによる最適化
+   - 動的関数生成
 
-- **[CHIP-8命令セット仕様](reference/01-instruction-set.md)**
-  35個すべての命令の詳細仕様と実装例
+5. **[S式Prolog統合](how-to-guides/05-s-expression-prolog.md)**
+   - 論理プログラミング統合
+   - 形式検証システム
+   - 自動定理証明
 
-- **[API リファレンス](reference/02-api-reference.md)**
-  すべてのクラス、関数、型の完全な仕様
+6. **[高度な実装技法](tutorials/06-advanced-implementation.md)**
+   - 実行時最適化
+   - JITコンパイル技法
+   - 自己改善システム
 
-開発中の調べ物や実装の確認に使用します。
+### 💡 [Explanation](./explanation/) - 概念理解
+**目的**: 設計思想と理論的背景の完全理解
+**対象**: アーキテクチャを深く理解したい方
 
----
+#### コンテンツ構成
+1. **[CHIP-8概要](explanation/01-chip8-overview.md)**
+   - CHIP-8の歴史と意義
+   - アーキテクチャ詳細
+   - エミュレーション原理
 
-### 💡 Explanation（解説）
-**「理解を深めたい時に」**
+2. **[アーキテクチャ設計](explanation/02-architecture-design.md)**
+   - レイヤードアーキテクチャ
+   - 責任分離の原則
+   - プラガブル設計
 
-設計思想と背景知識を説明する解説記事です。
+3. **[CLOSアーキテクチャ](explanation/03-clos-architecture.md)**
+   - 多重継承とMixin
+   - メソッドコンビネーション
+   - メタクラスプロトコル
 
-- **[CHIP-8エミュレーター概要](explanation/01-chip8-overview.md)**
-  CHIP-8の歴史とエミュレーター開発の意義
+4. **[テスト哲学](explanation/04-testing-philosophy.md)**
+   - TDD実践
+   - Property-Based Testing理論
+   - 包括的品質保証
 
-- **[アーキテクチャ設計詳細](explanation/02-architecture-design.md)**
-  システム全体の設計思想と技術的決定の背景
+5. **[設計決定記録](explanation/05-architecture-decisions.md)**
+   - アーキテクチャ決定記録
+   - トレードオフ分析
+   - 将来の拡張性
 
-- **[テスト戦略とPBT](explanation/03-testing-strategy.md)**
-  TDDとProperty-Based Testingによる品質保証
+### 📋 [Reference](./reference/) - 仕様参照
+**目的**: 正確で詳細な技術仕様の提供
+**対象**: 実装の詳細を確認する開発者
 
-なぜそのような設計にしたのか、背景と理由を理解できます。
+#### コンテンツ構成
+1. **[命令セット仕様](reference/01-instruction-set.md)**
+   - 35命令の完全仕様
+   - オペコード形式
+   - 実装例
+
+2. **[APIリファレンス](reference/02-api-reference.md)**
+   - 全パブリックAPI
+   - クラス階層
+   - 関数シグネチャ
+
+3. **[技術仕様書](reference/03-technical-specification.md)**
+   - システム要件
+   - パフォーマンス仕様
+   - 拡張仕様対応
 
 ## 🚀 クイックスタート
 
